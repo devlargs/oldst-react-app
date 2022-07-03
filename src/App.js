@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+import progress from "nprogress";
 import { useEffect, useRef } from "react";
 import Header from "./components/Header";
 import Products from "./components/Products";
@@ -23,10 +24,11 @@ const App = () => {
     if (!endOfCatalouge) {
       try {
         setLoading(true);
+        progress.start();
         const data = await fetch(
           `http://localhost:8000/products?_page=${
             nextPage ? nextPage : page
-          }&_limit=${limit}`
+          }&_limit=${limit}${sorter && `&_sort=${sorter.toLowerCase()}`}`
         );
         const response = await data.json();
         if (!response.length) {
@@ -37,6 +39,7 @@ const App = () => {
       } catch (ex) {
         console.error(ex);
       } finally {
+        progress.done();
         setLoading(false);
       }
     }
@@ -44,11 +47,11 @@ const App = () => {
 
   useEffect(() => {
     load();
-  }, []);
+  }, []); // eslint-disable-line
 
   useEffect(() => {
-    // load();
-  }, [sorter]);
+    load();
+  }, [sorter]); // eslint-disable-line
 
   const onScroll = () => {
     if (containerRef.current) {

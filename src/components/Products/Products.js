@@ -6,7 +6,6 @@ import {
   Grid,
   GridItem,
   Image,
-  Spinner,
   Text,
 } from "@chakra-ui/react";
 import StarRatings from "react-star-ratings";
@@ -17,7 +16,6 @@ const Products = () => {
   const products = useProducts((e) => e.products);
   const loading = useProducts((e) => e.loading);
   const endOfCatalouge = useProducts((e) => e.endOfCatalouge);
-  const sorter = useProducts((e) => e.sorter);
 
   return (
     <>
@@ -33,12 +31,7 @@ const Products = () => {
           gridAutoRows="1fr"
           margin="0 auto"
         >
-          {(sorter
-            ? products.sort((a, b) =>
-                a[sorter.toLowerCase()] > b[sorter.toLowerCase()] ? 1 : -1
-              )
-            : products
-          ).map((product) => (
+          {products.map((product) => (
             <GridItem
               key={product.id}
               p={4}
@@ -89,13 +82,12 @@ const Products = () => {
       {!endOfCatalouge && loading && (
         <Flex justifyContent="center" mt="32px" mb="64px">
           <Box textAlign="center">
-            <Spinner size="lg" />
-            <Text
-              mt="1rem"
-              fontSize="md"
-              textTransform="uppercase"
-              fontWeight="bold"
-            >
+            <div className="lds-facebook">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <Text fontSize="md" textTransform="uppercase" fontWeight="bold">
               - Loading Products -
             </Text>
           </Box>

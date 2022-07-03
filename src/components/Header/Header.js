@@ -12,10 +12,20 @@ import {
 import useProducts from "../../store/useProducts";
 
 const Header = () => {
-  const { sorter, setSorter } = useProducts(({ sorter, setSorter }) => ({
-    sorter,
-    setSorter,
-  }));
+  const { sorter, setSorter, setProducts, setPage } = useProducts(
+    ({ sorter, setSorter, setProducts, setPage }) => ({
+      sorter,
+      setSorter,
+      setProducts,
+      setPage,
+    })
+  );
+
+  const onSort = (sort) => {
+    setPage(1);
+    setProducts([]);
+    setSorter(sort);
+  };
 
   return (
     <Box bg="blue.800" h="80px">
@@ -36,9 +46,9 @@ const Header = () => {
               Sort By
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={() => setSorter("Title")}>Title</MenuItem>
-              <MenuItem onClick={() => setSorter("Price")}>Price</MenuItem>
-              <MenuItem onClick={() => setSorter("Rating")}>Rating</MenuItem>
+              <MenuItem onClick={() => onSort("Title")}>Title</MenuItem>
+              <MenuItem onClick={() => onSort("Price")}>Price</MenuItem>
+              <MenuItem onClick={() => onSort("Rating")}>Rating</MenuItem>
             </MenuList>
           </Menu>
           {sorter && (
