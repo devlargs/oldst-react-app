@@ -5,19 +5,19 @@ import Products from "./components/Products";
 import useProducts from "./store/useProducts";
 
 const App = () => {
+  const containerRef = useRef();
+  const setLoading = useProducts((e) => e.setLoading);
+  const limit = useProducts((e) => e.limit);
+  const sorter = useProducts((e) => e.sorter);
   const [products, setProducts] = useProducts((e) => [
     e.products,
     e.setProducts,
   ]);
-  const setLoading = useProducts((e) => e.setLoading);
   const [page, setPage] = useProducts((e) => [e.page, e.setPage]);
-  const [limit, setLimit] = useProducts((e) => [e.limit, e.setLimit]);
-  const containerRef = useRef();
   const [endOfCatalouge, setEndOfCatalouge] = useProducts((e) => [
     e.endOfCatalouge,
     e.setEndOfCatalouge,
   ]);
-  const sorter = useProducts((e) => e.sorter);
 
   const load = async (nextPage) => {
     if (!endOfCatalouge) {
@@ -47,7 +47,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    load();
+    // load();
   }, [sorter]);
 
   const onScroll = () => {

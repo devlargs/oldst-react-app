@@ -17,6 +17,7 @@ const Products = () => {
   const products = useProducts((e) => e.products);
   const loading = useProducts((e) => e.loading);
   const endOfCatalouge = useProducts((e) => e.endOfCatalouge);
+  const sorter = useProducts((e) => e.sorter);
 
   return (
     <>
@@ -32,7 +33,12 @@ const Products = () => {
           gridAutoRows="1fr"
           margin="0 auto"
         >
-          {products.map((product) => (
+          {(sorter
+            ? products.sort((a, b) =>
+                a[sorter.toLowerCase()] > b[sorter.toLowerCase()] ? 1 : -1
+              )
+            : products
+          ).map((product) => (
             <GridItem
               key={product.id}
               p={4}

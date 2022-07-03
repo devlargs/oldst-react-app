@@ -10,7 +10,7 @@ const useProducts = create((set) => ({
   setLoading: (loading) => set({ loading }),
   page: 1,
   setPage: (page) => set({ page }),
-  limit: 15,
+  limit: 10,
   setLimit: (limit) => set({ limit }),
   endOfCatalouge: false,
   setEndOfCatalouge: (endOfCatalouge) => set({ endOfCatalouge }),
