@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react";
-import progress from "nprogress";
 import { useEffect, useRef } from "react";
 import Header from "./components/Header";
 import Products from "./components/Products";
@@ -24,7 +23,6 @@ const App = () => {
     if (!endOfCatalouge) {
       try {
         setLoading(true);
-        progress.start();
         const data = await fetch(
           `http://localhost:8000/products?_page=${
             nextPage ? nextPage : page
@@ -39,7 +37,6 @@ const App = () => {
       } catch (ex) {
         console.error(ex);
       } finally {
-        progress.done();
         setLoading(false);
       }
     }
