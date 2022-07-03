@@ -12,12 +12,13 @@ import {
 import useProducts from "../../store/useProducts";
 
 const Header = () => {
-  const { sorter, setSorter, setProducts, setPage } = useProducts(
-    ({ sorter, setSorter, setProducts, setPage }) => ({
+  const { sorter, setSorter, setProducts, setPage, setAdImage } = useProducts(
+    ({ sorter, setSorter, setProducts, setPage, setAdImage }) => ({
       sorter,
       setSorter,
       setProducts,
       setPage,
+      setAdImage,
     })
   );
 
@@ -25,6 +26,7 @@ const Header = () => {
     setPage(1);
     setProducts([]);
     setSorter(sort);
+    setAdImage(null);
   };
 
   return (

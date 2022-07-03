@@ -16,6 +16,8 @@ const useProducts = create((set) => ({
   setEndOfCatalouge: (endOfCatalouge) => set({ endOfCatalouge }),
   sorter: null,
   setSorter: (sorter) => set({ sorter }),
+  adImage: null,
+  setAdImage: (adImage) => set({ adImage }),
 }));
 
 export default useProducts;
