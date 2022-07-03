@@ -21,7 +21,7 @@ const App = () => {
     e.endOfCatalouge,
     e.setEndOfCatalouge,
   ]);
-  const [adImage, setAdImage] = useProducts((e) => [e.adImage, e.setAdImage]);
+  const setAdImage = useProducts((e) => e.setAdImage);
   const [counter, setCounter] = useState(1);
   const [previousImages, setPreviousImages] = useState([]);
 
@@ -84,6 +84,7 @@ const App = () => {
 
       getImage();
     }
+    // eslint-disable-next-line
   }, [products]);
 
   const onScroll = () => {
