@@ -21,7 +21,12 @@ const Products = () => {
     <>
       {products.length ? (
         <Grid
-          templateColumns="repeat(4, 1fr)"
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            sm: "repeat(2, 1fr)",
+            lg: "repeat(3, 1fr)",
+            xl: "repeat(4, 1fr)",
+          }}
           gap={6}
           gridAutoRows="1fr"
           margin="0 auto"
