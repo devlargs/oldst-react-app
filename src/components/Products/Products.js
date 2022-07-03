@@ -39,7 +39,6 @@ const Products = () => {
               bg="#FFFFFF"
               _hover={{
                 bg: "gray.200",
-                // color: "white",
               }}
               cursor="pointer"
               transition="0.5s ease-in"
@@ -66,7 +65,7 @@ const Products = () => {
               <Text fontSize="13px">{renderDate(product.date)}</Text>
               <Box mt="-4px">
                 <StarRatings
-                  rating={4}
+                  rating={product.rating}
                   numberOfStars={5}
                   starDimension="16px"
                   starSpacing="0"
@@ -84,8 +83,13 @@ const Products = () => {
         <Flex justifyContent="center">
           <Box textAlign="center">
             <Spinner size="lg" />
-            <Text mt="1rem" fontSize="large">
-              Loading Products
+            <Text
+              mt="1rem"
+              fontSize="md"
+              textTransform="uppercase"
+              fontWeight="bold"
+            >
+              - Loading Products -
             </Text>
           </Box>
         </Flex>

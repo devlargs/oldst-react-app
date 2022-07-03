@@ -11,7 +11,6 @@ const subtractDate = (dateString) => {
 };
 
 export const renderDate = (dateString) => {
-  console.log(subtractDate(dateString));
   const daysOld = subtractDate(dateString);
   return daysOld < 8 ? fromNow(dateString) : formatDate(dateString);
 };
