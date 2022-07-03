@@ -1,4 +1,6 @@
 import {
+  Alert,
+  AlertIcon,
   Box,
   Flex,
   Grid,
@@ -14,8 +16,7 @@ import useProducts from "../../store/useProducts";
 const Products = () => {
   const products = useProducts((e) => e.products);
   const loading = useProducts((e) => e.loading);
-
-  console.log(products);
+  const endOfCatalouge = useProducts((e) => e.endOfCatalouge);
 
   return (
     <>
@@ -79,8 +80,8 @@ const Products = () => {
         <></>
       )}
 
-      {loading && (
-        <Flex justifyContent="center">
+      {!endOfCatalouge && loading && (
+        <Flex justifyContent="center" mt="32px" mb="64px">
           <Box textAlign="center">
             <Spinner size="lg" />
             <Text
@@ -93,6 +94,12 @@ const Products = () => {
             </Text>
           </Box>
         </Flex>
+      )}
+
+      {endOfCatalouge && (
+        <Alert status="info" my="1rem">
+          <AlertIcon />~ end of catalogue ~
+        </Alert>
       )}
     </>
   );
