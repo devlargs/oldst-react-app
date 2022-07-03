@@ -1,9 +1,21 @@
-import { Box, Grid, GridItem, Image, Spinner, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Image,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
+import StarRatings from "react-star-ratings";
+import { renderDate } from "../../helpers/formatDate";
 import useProducts from "../../store/useProducts";
 
 const Products = () => {
   const products = useProducts((e) => e.products);
   const loading = useProducts((e) => e.loading);
+
+  console.log(products);
 
   return (
     <>
@@ -21,26 +33,41 @@ const Products = () => {
               w="100%"
               bg="#FFFFFF"
               _hover={{
-                bg: "blue.700",
-                color: "white",
+                bg: "gray.200",
+                // color: "white",
               }}
               cursor="pointer"
               transition="0.5s ease-in"
               boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
               borderRadius="8px"
             >
-              <Image src={product.thumbnail} h={200} margin="auto" />
+              <Image
+                src={product.thumbnail}
+                h={200}
+                margin="auto"
+                border="1px solid white"
+              />
               <Text
-                textAlign="center"
                 mt={8}
                 textTransform="uppercase"
                 fontWeight="bold"
+                fontSize="15px"
               >
                 {product.title}
               </Text>
-              <Text textAlign="center" fontWeight="bold">
+              <Text fontWeight="bold" fontSize="13px">
                 ${product.price.toLocaleString()}
               </Text>
+              <Text fontSize="13px">{renderDate(product.date)}</Text>
+              <Box mt="-4px">
+                <StarRatings
+                  rating={4}
+                  numberOfStars={5}
+                  starDimension="16px"
+                  starSpacing="0"
+                  starRatedColor="#F7B011"
+                />
+              </Box>
             </GridItem>
           ))}
         </Grid>
@@ -49,9 +76,14 @@ const Products = () => {
       )}
 
       {loading && (
-        <Box d="flex" justifyContent="center">
-          <Spinner size="lg" />
-        </Box>
+        <Flex justifyContent="center">
+          <Box textAlign="center">
+            <Spinner size="lg" />
+            <Text mt="1rem" fontSize="large">
+              Loading Products
+            </Text>
+          </Box>
+        </Flex>
       )}
     </>
   );
