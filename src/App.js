@@ -9,7 +9,7 @@ const App = () => {
     e.products,
     e.setProducts,
   ]);
-  const [loading, setLoading] = useProducts((e) => [e.loading, e.setLoading]);
+  const setLoading = useProducts((e) => e.setLoading);
   const [page, setPage] = useProducts((e) => [e.page, e.setPage]);
   const [limit, setLimit] = useProducts((e) => [e.limit, e.setLimit]);
   const containerRef = useRef();
@@ -17,6 +17,7 @@ const App = () => {
     e.endOfCatalouge,
     e.setEndOfCatalouge,
   ]);
+  const sorter = useProducts((e) => e.sorter);
 
   const load = async (nextPage) => {
     if (!endOfCatalouge) {
@@ -44,6 +45,10 @@ const App = () => {
   useEffect(() => {
     load();
   }, []);
+
+  useEffect(() => {
+    load();
+  }, [sorter]);
 
   const onScroll = () => {
     if (containerRef.current) {

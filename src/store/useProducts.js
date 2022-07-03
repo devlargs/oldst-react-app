@@ -14,6 +14,8 @@ const useProducts = create((set) => ({
   setLimit: (limit) => set({ limit }),
   endOfCatalouge: false,
   setEndOfCatalouge: (endOfCatalouge) => set({ endOfCatalouge }),
+  sorter: null,
+  setSorter: (sorter) => set({ sorter }),
 }));
 
 export default useProducts;
